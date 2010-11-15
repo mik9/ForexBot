@@ -1,5 +1,8 @@
 #include "deal.h"
-
+/*
+ * НІКОЛИ більше не юзать в іменах змінних більше ніж 2 нижнів підкреслювання
+ * НІКОЛИ!!!
+ */
 Deal::Deal(double _value, bool __direction)
 {
     _close_value = _open_value=_value;
