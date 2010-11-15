@@ -80,31 +80,38 @@ void MainWidget::on_button_train_clicked()
     long date_end=find_last_date(ui->date_to->date());
 
 //    qDebug() << date_start << date_end;
-
-    int w1_max,w2_max,w3_max,w4_max;
-    double trade_max=-100;
+    trade_max=-100500;
     for(int w1=w1_start;w1<w1_to;w1+=w1_step) {
         for(int w2=w2_start;w2<w2_to;w2+=w2_step) {
             for(int w3=w3_start;w3<w3_to;w3+=w3_step) {
+                QVector<TradingCycle*> v;
                 for(int w4=w4_start;w4<w4_to;w4+=w4_step) {
-                    TradingCycle t(&vector,date_start,date_end,w1,w2,w3,w4);
-                    t.trade();
-                    double profit=t.profit();
-                    if(profit>trade_max) {
-                        trade_max=profit;
-                        w1_max=w1;
-                        w2_max=w2;
-                        w3_max=w3;
-                        w4_max=w4;
-                    }
+                    TradingCycle *t=new TradingCycle(&vector,date_start,date_end,w1,w2,w3,w4);
+                    connect(t,SIGNAL(my_finished(TradingCycle*)),this,SLOT(thread_finished(TradingCycle*)));
+                    t->start();
+                    v.append(t);
+                }
+                for(int i=0;i<v.count();i++) {
+                    v.at(i)->wait();
                 }
             }
         }
         qDebug() << (double)(w1-w1_start)/(w1_to-w1_start)*100;
     }
-    //qDebug() << count;
-    qDebug() << trade_max;
-    qDebug("%d %d %d %d",w1_max,w2_max,w3_max,w4_max);
+}
+void MainWidget::thread_finished(TradingCycle* t)
+{
+    if(t->profit()>trade_max){
+        trade_max=t->profit();
+        t->get_parameters(&w1_max,&w2_max,&w3_max,&w4_max);
+
+        ui->label_profit->setText(QString::number(trade_max));
+        ui->label_w1->setText(QString::number(w1_max));
+        ui->label_w2->setText(QString::number(w2_max));
+        ui->label_w3->setText(QString::number(w3_max));
+        ui->label_w4->setText(QString::number(w4_max));
+    }
+    delete t;
 }
 
 void MainWidget::on_button_trade_clicked()
@@ -116,6 +123,7 @@ void MainWidget::on_button_trade_clicked()
     long date_start=find_first_date(ui->trade_from->date());
     long date_end=find_last_date(ui->trade_to->date());
     TradingCycle t(&vector,date_start,date_end,w1,w2,w3,w4);
-    t.trade();
+    t.start();
+    t.wait();
     qDebug() << t.profit();
 }

@@ -34,5 +34,5 @@ double Deal::close_value()
 
 double Deal::profit()
 {
-    return (_direction == SELL) ? (_close_value - _open_value) : (_open_value - _close_value);
+    return (_direction == BUY) ? (_close_value - _open_value) : (_open_value - _close_value);
 }

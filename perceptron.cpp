@@ -11,10 +11,10 @@ Perceptron::Perceptron(QVector<bid *> *_vector, int _w1, int _w2, int _w3, int _
 
 double Perceptron::perceptron(long pos)
 {
-    return w1*oscillator(pos-1) +
-            w2*oscillator(pos-8) +
-            w3*oscillator(pos-15) +
-            w4*oscillator(pos-22);
+    return (w1-100)*oscillator(pos) +
+            (w2-100)*oscillator(pos-7) +
+            (w3-100)*oscillator(pos-14) +
+            (w4-100)*oscillator(pos-21);
 }
 
 double Perceptron::oscillator(long pos)
