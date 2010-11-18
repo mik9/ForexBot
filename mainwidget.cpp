@@ -16,7 +16,9 @@ MainWidget::~MainWidget()
 
 void MainWidget::load()
 {
-    QFile file(tr("EURUSD60.csv"));
+    QString fileName = QFileDialog::getOpenFileName(this,
+         tr("Open File"), ".", "");
+    QFile file(fileName);
     if(!file.open(QIODevice::ReadOnly)){
         qDebug() << tr("Open file error.");
         return;
@@ -126,4 +128,5 @@ void MainWidget::on_button_trade_clicked()
     t.start();
     t.wait();
     qDebug() << t.profit();
+    t.view_results();
 }

@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QFile>
+#include <QFileDialog>
 #include "bid.h"
 #include "traidingcycle.h"
 

@@ -16,18 +16,20 @@ class TradingCycle : public QThread
     Q_OBJECT
 public:
     TradingCycle(QVector<bid*>* _vector,long _date_start,long _date_end,int w1,int w2,int w3,int w4);
+    ~TradingCycle();
     void trade();
     double profit();
 //    void set_parameters(int w1,int w2,int w3,int w4);
     void get_parameters(int *w1,int *w2,int *w3,int *w4);
     virtual void run();
+    void view_results();
 
 signals:
     void my_finished( TradingCycle* );
 
 private:
     QVector<bid*>* vector;
-//    QVector<Deal*> deals;
+    QVector<Deal*> deals;
     long date_start;
     long date_end;
     Perceptron* p;
