@@ -130,3 +130,11 @@ void MainWidget::on_button_trade_clicked()
     qDebug() << t.profit();
     t.view_results(this);
 }
+
+void MainWidget::on_btn_set_clicked()
+{
+    ui->w1->setValue(ui->label_w1->text().toInt());
+    ui->w2->setValue(ui->label_w2->text().toInt());
+    ui->w3->setValue(ui->label_w3->text().toInt());
+    ui->w4->setValue(ui->label_w4->text().toInt());
+}

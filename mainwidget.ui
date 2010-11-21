@@ -493,6 +493,13 @@
         </item>
        </layout>
       </item>
+      <item>
+       <widget class="QPushButton" name="btn_set">
+        <property name="text">
+         <string>Set as current</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>

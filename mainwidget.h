@@ -37,6 +37,7 @@ private:
     double trade_max;
 
 private slots:
+    void on_btn_set_clicked();
     void on_button_trade_clicked();
     void on_button_train_clicked();
     void thread_finished(TradingCycle*);
