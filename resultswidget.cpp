@@ -16,6 +16,8 @@ ResultsWidget::ResultsWidget(QWidget *parent, QVector<Deal *> *d) :
     if(!d)
         return;
     ui->tableWidget->setRowCount(d->count());
+    ui->tableWidget->setMinimumWidth(ui->tableWidget->columnWidth(0)*5);
+    qDebug() << ui->tableWidget->minimumWidth();
     for(int i=0;i<d->count();i++)
     {
         ui->tableWidget->setItem(i,0,new QTableWidgetItem(d->at(i)==BUY ? "Buy" : "Sell"));

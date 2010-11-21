@@ -5,6 +5,7 @@
 #include "deal.h"
 #include <QVector>
 #include <QDialog>
+#include <QDebug>
 
 namespace Ui {
     class ResultsWidget;
