@@ -15,12 +15,15 @@ SOURCES += main.cpp\
     bid.cpp \
     deal.cpp \
     traidingcycle.cpp \
-    perceptron.cpp
+    perceptron.cpp \
+    resultswidget.cpp
 
 HEADERS  += mainwidget.h \
     bid.h \
     deal.h \
     traidingcycle.h \
-    perceptron.h
+    perceptron.h \
+    resultswidget.h
 
-FORMS    += mainwidget.ui
+FORMS    += mainwidget.ui \
+    resultswidget.ui

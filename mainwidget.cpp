@@ -128,5 +128,5 @@ void MainWidget::on_button_trade_clicked()
     t.start();
     t.wait();
     qDebug() << t.profit();
-    t.view_results();
+    t.view_results(this);
 }

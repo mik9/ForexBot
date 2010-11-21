@@ -103,16 +103,9 @@ void TradingCycle::run()
     quit();
 }
 
-void TradingCycle::view_results()
+void TradingCycle::view_results(QWidget* w)
 {
-    int p=0,m=0;
-    for(int i=0;i<deals.count();i++){
-        if(deals.at(i)->profit()<0)
-            m++;
-        else
-            p++;
-    }
-    qDebug() << "Deals all:" << deals.count();
-    qDebug() << "Deals +:" << p;
-    qDebug() << "Deals -:" << m;
+    ResultsWidget* r=new ResultsWidget(w,&deals);
+    //r.setWindowModality(Qt::WindowModal);
+    r->show();
 }

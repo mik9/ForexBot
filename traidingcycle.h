@@ -8,6 +8,7 @@
 #include "perceptron.h"
 #include "deal.h"
 #include "bid.h"
+#include "resultswidget.h"
 
 #define STOP_LOSS 0.01
 
@@ -22,7 +23,7 @@ public:
 //    void set_parameters(int w1,int w2,int w3,int w4);
     void get_parameters(int *w1,int *w2,int *w3,int *w4);
     virtual void run();
-    void view_results();
+    void view_results(QWidget*);
 
 signals:
     void my_finished( TradingCycle* );
